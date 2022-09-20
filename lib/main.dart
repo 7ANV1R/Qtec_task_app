@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qtec_task_app/core/theme/app_theme.dart';
 import 'package:qtec_task_app/presentation/pages/search/search_page.dart';
 
 void main() {
@@ -13,10 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Qtec Task App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
+      theme: CustomAppTheme.lightTheme,
       home: const SearchPage(),
     );
   }
