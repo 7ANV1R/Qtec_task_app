@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:qtec_task_app/core/const/ui_helper.dart';
+import 'package:qtec_task_app/presentation/widgets/gradient_button.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: const [
+        ProductCardBack(),
+        Positioned(
+          bottom: 0,
+          child: ProductCardFront(),
+        ),
+      ],
+    );
+  }
+}
+
+class ProductCardBack extends StatelessWidget {
+  const ProductCardBack({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +122,18 @@ class ProductCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ProductCardFront extends StatelessWidget {
+  const ProductCardFront({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomElevetedButton(
+      onPressed: () {},
+      child: const Icon(Icons.add, color: Colors.white),
     );
   }
 }
