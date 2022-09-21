@@ -8,3 +8,5 @@ abstract class SearchState extends Equatable {
 }
 
 class SearchInitial extends SearchState {}
+
+class SearchResultLoaded extends SearchState {}

@@ -22,6 +22,9 @@ dependencies:
   #for svg icon
   websafe_svg: ^2.1.2+4
 
+  #for api req-res
+  http: ^0.13.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
