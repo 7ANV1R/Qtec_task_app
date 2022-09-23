@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:qtec_task_app/core/const/ui_helper.dart';
+import 'package:qtec_task_app/data/models/product_model.dart';
 import 'package:qtec_task_app/presentation/widgets/gradient_button.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, required this.product});
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.topCenter,
-      children: const [
-        ProductCardBack(),
-        Positioned(
+      children: [
+        ProductCardBack(
+          product: product,
+        ),
+        const Positioned(
           bottom: 0,
           child: ProductCardFront(),
         ),
@@ -21,7 +25,9 @@ class ProductCard extends StatelessWidget {
 }
 
 class ProductCardBack extends StatelessWidget {
-  const ProductCardBack({Key? key}) : super(key: key);
+  const ProductCardBack({Key? key, required this.product}) : super(key: key);
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +45,12 @@ class ProductCardBack extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.network(
-              'https://d1ojphegpburrh.cloudfront.net/media/images/product/None/17/Rupchanda_Soybean_Oil__5_ltr.png',
+              product.image,
               height: 117,
               fit: BoxFit.fill,
             ),
             Text(
-              'লেস ক্লাসিক ফ্যামিলি সাইজ চিপস্',
+              product.productName,
               textAlign: TextAlign.center,
               style: textTheme.bodyText2,
             ),
