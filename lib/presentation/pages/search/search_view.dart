@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qtec_task_app/core/const/assets_value.dart';
+import 'package:qtec_task_app/core/const/ui_helper.dart';
 import 'package:qtec_task_app/logic/cubits/search/search_cubit.dart';
 import 'package:qtec_task_app/presentation/pages/search/widget/product_card.dart';
 import 'package:websafe_svg/websafe_svg.dart';
@@ -23,6 +24,8 @@ class _SearchViewState extends State<SearchView> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: NestedScrollView(
         floatHeaderSlivers: true,
@@ -31,16 +34,23 @@ class _SearchViewState extends State<SearchView> {
             floating: true,
             snap: true,
             bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(64),
+              preferredSize: Size.fromHeight(size.height * 0.05),
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                ),
                 child: TextFormField(
                   controller: textEditingController,
                   onFieldSubmitted: (value) {
                     context.read<SearchCubit>().search(query: textEditingController.text);
                   },
                   decoration: InputDecoration(
+                    isDense: true,
                     hintText: 'কাঙ্ক্ষিত পণ্যটি খুঁজুন',
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
                     suffixIcon: WebsafeSvg.asset(
                       kAssetSearchIcon,
                       height: 16,
@@ -72,13 +82,15 @@ class _SearchViewState extends State<SearchView> {
                 child: GridView.builder(
                   itemCount: state.productModel.length,
                   physics: const BouncingScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    mainAxisExtent: 300,
+                    mainAxisExtent: size.height / 2.75,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                   ),
-                  itemBuilder: (context, index) => ProductCard(product: state.productModel[index]),
+                  itemBuilder: (context, index) => ProductCard(
+                    product: state.productModel[index],
+                  ),
                 ),
               );
             }
