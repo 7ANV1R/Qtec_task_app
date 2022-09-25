@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qtec_task_app/core/const/assets_value.dart';
-import 'package:qtec_task_app/core/const/ui_helper.dart';
 import 'package:qtec_task_app/logic/cubits/search/search_cubit.dart';
 import 'package:qtec_task_app/presentation/pages/search/widget/product_card.dart';
 import 'package:websafe_svg/websafe_svg.dart';
@@ -72,7 +71,12 @@ class _SearchViewState extends State<SearchView> {
             }
             if (state is SearchLoading) {
               return const Center(
-                child: Text('Loading...'),
+                child: CircularProgressIndicator.adaptive(),
+              );
+            }
+            if (state is SearchReasulEmpty) {
+              return const Center(
+                child: Text('No result found.'),
               );
             }
 

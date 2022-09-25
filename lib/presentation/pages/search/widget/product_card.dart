@@ -128,15 +128,39 @@ class ProductCard extends StatelessWidget {
           ),
           Positioned(
             bottom: 0,
-            child: FloatingActionButton(
-              onPressed: () {},
-              mini: true,
-              backgroundColor: const Color(0xFF6210E1),
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-            ),
+            child: product.stock == 0
+                ? Container()
+                : CustomElevetedButton(
+                    onPressed: () {},
+                    child: const Icon(Icons.add, color: Colors.white),
+                  ),
+          ),
+
+          // no stock button
+
+          Positioned(
+            top: 0,
+            right: 8,
+            child: product.stock != 0
+                ? Container()
+                : ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: Size.zero,
+                        // padding: EdgeInsets.zero,
+                        elevation: 0,
+                        backgroundColor: const Color(0xFFFFCCCC),
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        )),
+                    child: Text(
+                      'স্টকে নেই',
+                      style: textTheme.bodyText2!.copyWith(
+                        color: const Color(0xFFC62828),
+                      ),
+                    ),
+                  ),
           ),
         ],
       ),

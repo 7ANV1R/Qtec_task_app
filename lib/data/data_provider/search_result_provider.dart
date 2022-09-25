@@ -19,9 +19,11 @@ class SearchResultApiImp {
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(utf8.decode(response.bodyBytes));
+
         final result = responseData['data']['products']['results'];
 
         data.addAll(result);
+        log(data.toString());
         return data;
       }
     } catch (e) {

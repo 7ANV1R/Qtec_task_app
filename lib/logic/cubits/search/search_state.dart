@@ -19,3 +19,5 @@ class SearchResultLoaded extends SearchState {
   @override
   List<Object> get props => [productModel];
 }
+
+class SearchReasulEmpty extends SearchState {}

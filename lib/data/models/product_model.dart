@@ -6,6 +6,7 @@ class ProductModel {
   final double discount;
   final double sellingPrice;
   final double profit;
+  final int stock;
 
   ProductModel({
     required this.id,
@@ -15,6 +16,7 @@ class ProductModel {
     required this.discount,
     required this.sellingPrice,
     required this.profit,
+    required this.stock,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -22,14 +24,15 @@ class ProductModel {
       id: json['id'] as int,
       image: json['image'] as String,
       productName: json['product_name'] as String,
-      currentPrice: _currentPriceWithoutNull(json['current_charge']),
-      discount: _discountWithoutNull(json['discount_charge']),
-      sellingPrice: _sellingPriceWithoutNull(json['selling_price']),
-      profit: _profitWithoutNull(json['profit']),
+      currentPrice: _currentPriceWithoutNull(json['charge']['current_charge']),
+      discount: _discountWithoutNull(json['charge']['discount_charge']),
+      sellingPrice: _sellingPriceWithoutNull(json['charge']['selling_price']),
+      profit: _profitWithoutNull(json['charge']['profit']),
+      stock: json['stock'] as int,
     );
   }
 
-  static double _discountWithoutNull(dynamic value) {
+  static double _currentPriceWithoutNull(dynamic value) {
     if (value == null) {
       return 0.0;
     } else if (value is int) {
@@ -43,7 +46,7 @@ class ProductModel {
     }
   }
 
-  static double _currentPriceWithoutNull(dynamic value) {
+  static double _discountWithoutNull(dynamic value) {
     if (value == null) {
       return 0.0;
     } else if (value is int) {

@@ -23,7 +23,7 @@ class SearchCubit extends Cubit<SearchState> {
 
     if (searchResult.isEmpty) {
       log('empty');
-      emit(const SearchResultLoaded(<ProductModel>[]));
+      emit(SearchReasulEmpty());
     } else {
       emit(SearchResultLoaded(searchResult));
     }
